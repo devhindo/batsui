@@ -6,14 +6,15 @@ import * as Font from 'expo-font';
 
 import HomeScreen from './src/screens/HomeScreen';
 import SignupScreen from './src/screens/SignupScreen';
-
+import BatsAreSleepingScreen from './src/screens/BatsAreSleepingScreen';
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [batsSleeping, setBatsSleeping] = useState(false);
 
   useEffect(() => {
     const ckeckLoginStatus = async () => {
@@ -56,14 +57,38 @@ export default function App() {
     return null;
   }
 
-  return (
-    <View
-      style={styles.container}
-      onLayout={onLayoutRootView}
-    >
-      {loggedIn ? <HomeScreen /> : <SignupScreen />}
-    </View>
-  );
+
+
+
+  if (batsSleeping) {
+    return (
+      <View
+        style={styles.container}
+        onLayout={onLayoutRootView}
+      >
+        <BatsAreSleepingScreen />
+      </View>
+    );
+  }
+  else if (loggedIn) {
+    return (
+      <View
+        style={styles.container}
+        onLayout={onLayoutRootView}
+      >
+        <HomeScreen />
+      </View>
+    );
+  } else {
+    return (
+      <View
+        style={styles.container}
+        onLayout={onLayoutRootView}
+      >
+        <SignupScreen />
+      </View>
+    );
+  }
 
   /*
   return (
