@@ -17,10 +17,21 @@ export default function App() {
   const [batsSleeping, setBatsSleeping] = useState(false);
 
   useEffect(() => {
+
+    const checkBatsSleeping = async () => {
+      //const response = await fetch('')
+      //const { batsSleeping } = await response.json();
+      // TODO: implement the above logic
+      setBatsSleeping(true);
+    
+    }
+    checkBatsSleeping();
+
     const ckeckLoginStatus = async () => {
       //const response = await fetch('')
       //const { loggedIn: isLoggedIn } = await response.json();
       // setLoggedIn(isLoggedIn);
+      // TODO: implement the above logic
       setLoading(false);
     };
     ckeckLoginStatus();
@@ -40,6 +51,8 @@ export default function App() {
     }
 
     prepare();
+
+
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
