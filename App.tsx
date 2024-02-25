@@ -4,9 +4,10 @@ import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
+
 import HomeScreen from './src/screens/HomeScreen';
 import SignupScreen from './src/screens/SignupScreen';
-import BatsAreSleepingScreen from './src/screens/BatsAreSleepingScreen';
+import BatsAreAwakeScreen from './src/screens/BatsAreAwakeScreen';
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
@@ -14,18 +15,28 @@ export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [batsSleeping, setBatsSleeping] = useState(false);
+  const [batsAwake, setBatsAwake] = useState(false);
 
   useEffect(() => {
 
-    const checkBatsSleeping = async () => {
-      //const response = await fetch('')
-      //const { batsSleeping } = await response.json();
-      // TODO: implement the above logic
-      setBatsSleeping(true);
+    const checkBatsAwake = async () => {
+      const url = process.env.EXPO_PUBLIC_URL + '/awake';
+      console.log("url" + url);
+      const response = await fetch(url);
+      console.log("response" + response);
+      if (!response.ok) {
+        console.error('HTTP error', response.status);
+        return;
+      }
+      const data = await response.json();
+      const { batsAwake } = data;
+      console.log("batsawkkk" + batsAwake);
+      setBatsAwake(batsAwake);
+
+      // TODO: FIX ERROR: can't make a request to the server
     
     }
-    checkBatsSleeping();
+    checkBatsAwake();
 
     const ckeckLoginStatus = async () => {
       //const response = await fetch('')
@@ -73,13 +84,13 @@ export default function App() {
 
 
 
-  if (batsSleeping) {
+  if (batsAwake) {
     return (
       <View
         style={styles.container}
         onLayout={onLayoutRootView}
       >
-        <BatsAreSleepingScreen />
+        <BatsAreAwakeScreen />
       </View>
     );
   }

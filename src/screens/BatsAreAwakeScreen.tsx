@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-function BatsAreSleepingScreen() {
+function BatsAreAwakeScreen() {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Don't make any noise until 6am</Text>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BatsAreSleepingScreen;
+export default BatsAreAwakeScreen;
