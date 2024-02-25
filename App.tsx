@@ -21,7 +21,6 @@ export default function App() {
       //const { loggedIn: isLoggedIn } = await response.json();
       // setLoggedIn(isLoggedIn);
       setLoading(false);
-      //setLoggedIn(true);
     };
     ckeckLoginStatus();
     async function prepare() {
